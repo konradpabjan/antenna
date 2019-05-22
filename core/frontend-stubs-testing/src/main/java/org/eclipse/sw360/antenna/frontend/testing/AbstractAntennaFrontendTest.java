@@ -57,7 +57,7 @@ abstract public class AbstractAntennaFrontendTest {
     @Parameterized.Parameters(name = "{index}: Test data = {1}")
     public static Collection<Object[]> data() throws URISyntaxException {
         String relativePathToP2Product = "../../../../modules/p2/antenna-p2-product/repository_manager";
-        if (! Paths.get(ClassCodeSourceLocation.getClassCodeSourceLocationAsString(AbstractAntennaFrontendTest.class),
+        if (!Paths.get(ClassCodeSourceLocation.getClassCodeSourceLocationAsString(AbstractAntennaFrontendTest.class),
                 relativePathToP2Product).normalize().toFile().exists()) {
             throw new RuntimeException("The folder " + relativePathToP2Product + " should be found by AbstractAntennaFrontendTest. Maybe the Path is outdated.");
         }
