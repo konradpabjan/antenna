@@ -76,9 +76,8 @@ public class MavenInvokerRequester extends IArtifactRequester {
             return Optional.of(expectedJarFile);
         }
 
-        LOGGER.info("Requesting artifact with id " + coordinates.getArtifactId());
+        LOGGER.debug("Requesting artifact with id " + coordinates.getArtifactId());
         boolean requestSuccessful = callMavenInvoker(coordinates, targetDirectory, classifierInformation.classifier);
-        LOGGER.info("DownloadedFile: " + expectedJarFile);
 
         String jarType = classifierInformation.isSource ? "sources jar" : classifierInformation.classifier + " jar";
         if (!requestSuccessful) {
@@ -126,7 +125,7 @@ public class MavenInvokerRequester extends IArtifactRequester {
 
         request.setPomFile(getPomFileFromContext());
         request.setGoals(mvnDownloadCmd);
-        request.setOutputHandler(LOGGER::info);
+        request.setOutputHandler(LOGGER::debug);
 
         return request;
     }
@@ -139,6 +138,7 @@ public class MavenInvokerRequester extends IArtifactRequester {
     private boolean callMavenInvocationRequest(InvocationRequest request) throws AntennaExecutionException {
         try {
             LOGGER.info("Calling Maven Invoker with command " + String.join(", ", request.getGoals()));
+            LOGGER.info("USEDMAVEN: " + defaultInvoker.getMavenExecutable());
             return defaultInvoker.execute(request)
                     .getExitCode() == 0;
         } catch (MavenInvocationException e) {
