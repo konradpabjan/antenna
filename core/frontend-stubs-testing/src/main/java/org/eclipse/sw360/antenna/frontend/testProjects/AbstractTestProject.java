@@ -11,6 +11,8 @@
 package org.eclipse.sw360.antenna.frontend.testProjects;
 
 import org.apache.commons.io.FileUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -58,6 +60,7 @@ abstract public class AbstractTestProject {
         copyFilesToProjectRoot(projectResourcesRoot, defaultFilesToCopy);
         copyFilesToProjectRoot(projectResourcesRoot, getOtherFilesToCopy());
         copyFilesToTemporaryRoot(projectResourcesRoot, getOutOfProjectFilesToCopy());
+        LoggerFactory.getLogger(getClass()).error("TestProject Folder: " + temporaryRoot + " ProjectRoot Folder: " + projectRoot);
     }
 
     private void copyFilesToTemporaryRoot(String projectResourcesRoot, List<String> filesToCopy) throws IOException {
