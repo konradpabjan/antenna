@@ -14,6 +14,10 @@ pool:
 steps:
 - task: Maven@3
   inputs:
+    options: '-version'
+
+- task: Maven@3
+  inputs:
     mavenPomFile: 'pom.xml'
     options: '-X'
     mavenOptions: '-Xmx3072m'
