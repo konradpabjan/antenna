@@ -76,8 +76,9 @@ public class MavenInvokerRequester extends IArtifactRequester {
             return Optional.of(expectedJarFile);
         }
 
-        LOGGER.debug("Requesting artifact with id " + coordinates.getArtifactId());
+        LOGGER.info("Requesting artifact with id " + coordinates.getArtifactId());
         boolean requestSuccessful = callMavenInvoker(coordinates, targetDirectory, classifierInformation.classifier);
+        LOGGER.info("DownloadedFile: " + expectedJarFile);
 
         String jarType = classifierInformation.isSource ? "sources jar" : classifierInformation.classifier + " jar";
         if (!requestSuccessful) {
@@ -87,7 +88,6 @@ public class MavenInvokerRequester extends IArtifactRequester {
             LOGGER.warn("Failed to find " + jarType + ": Maven call succeeded but Artifact was not generated in the expected place.");
             return Optional.empty();
         }
-        LOGGER.info("DownloadedFile: " + expectedJarFile);
 
         return Optional.of(expectedJarFile);
     }
@@ -126,7 +126,7 @@ public class MavenInvokerRequester extends IArtifactRequester {
 
         request.setPomFile(getPomFileFromContext());
         request.setGoals(mvnDownloadCmd);
-        request.setOutputHandler(LOGGER::debug);
+        request.setOutputHandler(LOGGER::info);
 
         return request;
     }
