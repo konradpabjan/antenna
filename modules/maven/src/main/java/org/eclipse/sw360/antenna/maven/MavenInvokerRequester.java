@@ -87,8 +87,9 @@ public class MavenInvokerRequester extends IArtifactRequester {
             LOGGER.warn("Failed to find " + jarType + ": Maven call succeeded but Artifact was not generated in the expected place.");
             return Optional.empty();
         }
+        LOGGER.info("DownloadedFile: " + expectedJarFile);
 
-        return Optional.of(getExpectedJarFile(coordinates, targetDirectory, classifierInformation));
+        return Optional.of(expectedJarFile);
     }
 
     private boolean callMavenInvoker(MavenCoordinates coordinates, Path targetDirectory, String classifier) {

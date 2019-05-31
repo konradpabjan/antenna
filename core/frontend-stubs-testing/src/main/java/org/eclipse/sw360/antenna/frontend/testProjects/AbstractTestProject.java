@@ -60,7 +60,6 @@ abstract public class AbstractTestProject {
         copyFilesToProjectRoot(projectResourcesRoot, defaultFilesToCopy);
         copyFilesToProjectRoot(projectResourcesRoot, getOtherFilesToCopy());
         copyFilesToTemporaryRoot(projectResourcesRoot, getOutOfProjectFilesToCopy());
-        LoggerFactory.getLogger(getClass()).error("TestProject Folder: " + temporaryRoot + " ProjectRoot Folder: " + projectRoot);
     }
 
     private void copyFilesToTemporaryRoot(String projectResourcesRoot, List<String> filesToCopy) throws IOException {
