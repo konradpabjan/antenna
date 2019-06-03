@@ -37,8 +37,12 @@ steps:
     set -e
     gradle analyze
     java -jar ../../core/frontend-stubs-testing/target/antenna-test-project-asserter.jar ExampleTestProject build
-    bash -c 'exit -1'
-    echo "Gradle success"
   workingDirectory: 'example-projects/example-project'
-  displayName: 'Gradle Tests'
-  failOnStderr: false
+  displayName: 'Gradle Test'
+
+- script: |
+    set -e
+    rm -R example-projects/example-project/target
+    .travis/runCLI.sh example-projects/example-project
+    java -jar core/frontend-stubs-testing/target/antenna-test-project-asserter.jar ExampleTestProject example-projects/example-project/target
+  displayName: 'CLI Test'
