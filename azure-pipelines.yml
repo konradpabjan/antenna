@@ -32,3 +32,12 @@ steps:
     jdkVersionOption: '1.8'
     jdkArchitectureOption: 'x64'
     goals: 'package'
+
+- task: Gradle@2
+  inputs:
+    gradleWrapperFile: 'gradle'
+    workingDirectory: 'example-projects/example-project'
+    tasks: 'analyze'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.8'
+    jdkArchitectureOption: 'x64'
