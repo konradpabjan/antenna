@@ -36,5 +36,7 @@ steps:
 - script: |
     gradle analyze
     java -jar ../../core/frontend-stubs-testing/target/antenna-test-project-asserter.jar ExampleTestProject build
+    echo "Gradle success"
   workingDirectory: 'example-projects/example-project'
   displayName: 'Gradle Tests'
+  failOnStderr: true
