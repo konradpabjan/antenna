@@ -26,8 +26,7 @@ steps:
 
 - task: Maven@3
   inputs:
-    workingDirectory: 'example-projects/example-project'
-    mavenPomFile: 'pom.xml'
+    mavenPomFile: 'example-projects/example-project/pom.xml'
     mavenOptions: '-Xmx3072m'
     javaHomeOption: 'JDKVersion'
     jdkVersionOption: '1.8'
