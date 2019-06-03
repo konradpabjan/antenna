@@ -60,6 +60,17 @@ abstract public class AbstractTestProject {
         copyFilesToProjectRoot(projectResourcesRoot, defaultFilesToCopy);
         copyFilesToProjectRoot(projectResourcesRoot, getOtherFilesToCopy());
         copyFilesToTemporaryRoot(projectResourcesRoot, getOutOfProjectFilesToCopy());
+
+
+        Process p;
+        try {
+            p = Runtime.getRuntime().exec("chmod 777 -R " + this.temporaryRoot.toString());
+            p.waitFor();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     private void copyFilesToTemporaryRoot(String projectResourcesRoot, List<String> filesToCopy) throws IOException {
