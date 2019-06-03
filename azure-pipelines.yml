@@ -12,6 +12,8 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
+- script: ls -la /usr/share/apache-maven-3.6.0
+  
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
