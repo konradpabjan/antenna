@@ -34,6 +34,7 @@ steps:
     goals: 'package'
 
 - script: |
+    set -e
     gradle analyze
     java -jar ../../core/frontend-stubs-testing/target/antenna-test-project-asserter.jar ExampleTestProject build
     bash -c 'exit -1'
