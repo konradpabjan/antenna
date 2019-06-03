@@ -19,7 +19,8 @@ steps:
     archiveFilePatterns: 'apache-maven-3.3.9-bin.zip'
     destinationFolder: '$(build.sourcesdirectory)/maven'
 
-- script: 'chmod -R 770 $(build.sourcesdirectory)/maven'
+#- script: 'chmod -R 777 $(build.sourcesdirectory)/maven'
+- script: 'ls -la $(build.sourcesdirectory)/maven'
 
 - task: Maven@3
   inputs:
