@@ -21,6 +21,8 @@ steps:
 
 - script: 'chmod -R 777 $(build.sourcesdirectory)/maven'
 
+- script: ls -la /tmp
+  
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
