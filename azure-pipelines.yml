@@ -12,22 +12,27 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- script: ls -la /usr/share/apache-maven-3.6.0/bin
+- script: 'wget https://www-eu.apache.org/dist/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.zip'
 
-- script: mvn install
+- task: ExtractFiles@1
+  inputs:
+    archiveFilePatterns: 'apache-maven-3.3.9-bin.zip'
+    destinationFolder: '$(build.sourcesdirectory)/maven'
 
-#- task: Maven@3
-#  inputs:
-#    mavenPomFile: 'pom.xml'
-#    options: '-DskipTests'
-#    mavenOptions: '-Xmx3072m'
-#    javaHomeOption: 'JDKVersion'
-#    jdkVersionOption: '1.8'
-#    jdkArchitectureOption: 'x64'
-#    publishJUnitResults: true
-#    testResultsFiles: '**/surefire-reports/TEST-*.xml'
-#    goals: 'install'
-#
+- task: Maven@3
+  inputs:
+    mavenPomFile: 'pom.xml'
+    mavenOptions: '-Xmx3072m'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.8'
+    jdkArchitectureOption: 'x64'
+    mavenVersionOption: 'Path'
+    mavenDirectory: '$(build.sourcesdirectory)/maven/apache-maven-3.3.9'
+    mavenSetM2Home: true
+    publishJUnitResults: true
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    goals: 'clean install'
+
 #- task: Maven@3
 #  inputs:
 #    mavenPomFile: 'example-projects/example-project/pom.xml'
