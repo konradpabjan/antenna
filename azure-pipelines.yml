@@ -21,21 +21,21 @@ steps:
 
 - script: 'chmod -R 777 $(build.sourcesdirectory)/maven'
 
-- script: ls -la /tmp
-  
-- task: Maven@3
-  inputs:
-    mavenPomFile: 'pom.xml'
-    mavenOptions: '-Xmx3072m'
-    javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.8'
-    jdkArchitectureOption: 'x64'
-    mavenVersionOption: 'Path'
-    mavenDirectory: '$(build.sourcesdirectory)/maven/apache-maven-3.3.9'
-    mavenSetM2Home: true
-    publishJUnitResults: true
-    testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    goals: 'clean install'
+- script: '$(build.sourcesdirectory)/maven/apache-maven-3.3.9/bin/mvn clean install'
+
+#- task: Maven@3
+#  inputs:
+#    mavenPomFile: 'pom.xml'
+#    mavenOptions: '-Xmx3072m'
+#    javaHomeOption: 'JDKVersion'
+#    jdkVersionOption: '1.8'
+#    jdkArchitectureOption: 'x64'
+#    mavenVersionOption: 'Path'
+#    mavenDirectory: '$(build.sourcesdirectory)/maven/apache-maven-3.3.9'
+#    mavenSetM2Home: true
+#    publishJUnitResults: true
+#    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+#    goals: 'clean install'
 
 #- task: Maven@3
 #  inputs:
