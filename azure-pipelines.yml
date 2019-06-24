@@ -19,9 +19,10 @@ steps:
     archiveFilePatterns: 'apache-maven-3.3.9-bin.zip'
     destinationFolder: '$(build.sourcesdirectory)/maven'
 
-- script: 'chmod -R 777 $(build.sourcesdirectory)/maven'
-- script: "echo '##vso[task.prependpath]$(build.sourcesdirectory)/maven'"
-- script: '$(build.sourcesdirectory)/maven/apache-maven-3.3.9/bin/mvn clean install'
+#- script: 'chmod -R 777 $(build.sourcesdirectory)/maven'
+#- script: "echo '##vso[task.prependpath]$(build.sourcesdirectory)/maven'"
+#- script: '$(build.sourcesdirectory)/maven/apache-maven-3.3.9/bin/mvn clean install'
+- script: 'mvn clean install'
 
 #- task: Maven@3
 #  inputs:
