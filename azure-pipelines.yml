@@ -24,7 +24,7 @@ steps:
 #- script: '$(build.sourcesdirectory)/maven/apache-maven-3.3.9/bin/mvn clean install'
 - script: 'sudo chmod -R 777 /usr/share'
 - script: 'mvn clean install -DinteractiveMode=false'
-- script: 'sudo ls -R  /usr/share'
+- script: 'sudo ls -la -R  /usr/share'
   condition: always()
 
 #- task: Maven@3
