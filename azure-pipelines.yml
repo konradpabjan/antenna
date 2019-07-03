@@ -12,17 +12,14 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- script: 'wget https://www-eu.apache.org/dist/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.zip'
-
-- task: ExtractFiles@1
+- task: Maven@3
   inputs:
-    archiveFilePatterns: 'apache-maven-3.3.9-bin.zip'
-    destinationFolder: '$(build.sourcesdirectory)/maven'
-
-#- script: 'chmod -R 777 $(build.sourcesdirectory)/maven'
-#- script: "echo '##vso[task.prependpath]$(build.sourcesdirectory)/maven'"
-#- script: '$(build.sourcesdirectory)/maven/apache-maven-3.3.9/bin/mvn clean install'
-- script: 'sudo chmod -R 777 /usr/share'
-- script: 'mvn clean install -DinteractiveMode=false'
-- script: 'sudo ls -la -R  /usr/share'
-  condition: always()
+    mavenPomFile: 'pom.xml'
+    options: '-X'
+    mavenOptions: '-Xmx3072m'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.8'
+    jdkArchitectureOption: 'x64'
+    publishJUnitResults: true
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    goals: 'install'
